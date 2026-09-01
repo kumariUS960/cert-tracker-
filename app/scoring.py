@@ -2,20 +2,6 @@
 
 Kept as pure functions (no DB, no FastAPI) so they're trivial to unit test
 in isolation from the API layer.
-
-Formula
--------
-readiness = hours_component + confidence_component
-
-    hours_component      = min(hours_logged / target_hours, 1.0) * HOURS_WEIGHT
-    confidence_component = (average_confidence / 5) * CONFIDENCE_WEIGHT
-
-With HOURS_WEIGHT=60 and CONFIDENCE_WEIGHT=40, a cert only reaches 100 when
-you've both put in the target hours *and* rate yourself confident on what
-you covered -- logging hours alone caps out at 60, and confidence alone
-caps out at 40.
-
-A cert with zero logged sessions always scores 0.
 """
 from typing import Optional, Sequence
 
